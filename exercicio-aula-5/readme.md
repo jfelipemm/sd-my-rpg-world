@@ -13,5 +13,5 @@ Para windows: `python nomedoarquivo`
 O nome do arquivo deve conter a extensão `.py`.
 
 ### Para executar o programa
-Execute o arquivo `server.py` para iniciar o servidor que ficará escutando as requisições do cliente.
-Em seguida execute o arquivo `cliente.py`. Ele é responsável por enviar uma requisição ao servidor com o array e o número a ser encontrado.
+Execute o arquivo `core-server.py` que funciona como serviço central para receber requisições do cliente. Execute 2 instâncias do arquivo `find-server.py` que são os serviços responsáveis por receber requições do core-server para cada trecho do array.
+Com o core-server e duas instâncias do find-server em execução, execute o arquivo `cliente.py`. Ele é responsável por enviar uma requisição ao core-server com o array e o número a ser encontrado.
