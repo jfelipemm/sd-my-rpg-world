@@ -5,10 +5,10 @@ from threading import Thread
 from config import config
 
 IP = config["ip"]
-PORT = config["port"]
+PORT = config["portFindServer"]
 TAMANHO_PACOTE = config["tamanhoPacote"]
 SEPARATOR = config["separador"]
-MAX_THREADS = config["maxThreads"]
+MAX_THREADS = config["maxThreadsFindServer"]
 
 thread_count = 0
 count_lock = False
@@ -77,7 +77,7 @@ def escutar():
             sck = socket()
             sck.bind(socket_bind_info)
             sck.listen()
-            print(f"Servidor Iniciado na porta {port}!")
+            print(f"-> Servidor Iniciado na porta {port}!")
             break
         except OSError:
             print(f"Porta {port} falhou!")
