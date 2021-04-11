@@ -2,10 +2,13 @@ import sys, threading, pickle
 from time import sleep
 from socket import socket
 from threading import Thread
+from config import config
 
-TAMANHO_PACOTE = 4096
-MAX_THREADS = 4
-SEPARATOR = "<>"
+IP = config["ip"]
+PORT = config["port"]
+TAMANHO_PACOTE = config["tamanhoPacote"]
+SEPARATOR = config["separador"]
+MAX_THREADS = config["maxThreads"]
 
 thread_count = 0
 count_lock = False
@@ -65,12 +68,21 @@ def traduzirMensagem(conexao):
     return array, num
 
 def escutar():
-    print("Iniciando Servidor...")
-    socket_bind_info = ('127.0.0.1', 3001)
-    sck = socket()
-    sck.bind(socket_bind_info)
-    sck.listen()
-    print("Servidor Iniciado!")
+    print("")
+    port = PORT
+    while True:
+        try:
+            print(f"Tentando iniciar servidor na porta {port}...")
+            socket_bind_info = (IP, port)
+            sck = socket()
+            sck.bind(socket_bind_info)
+            sck.listen()
+            print(f"Servidor Iniciado na porta {port}!")
+            break
+        except OSError:
+            print(f"Porta {port} falhou!")
+            port += 1
+
 
     while True:
         try:

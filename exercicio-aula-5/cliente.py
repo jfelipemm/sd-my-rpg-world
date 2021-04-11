@@ -1,18 +1,21 @@
 import numpy, random, pickle, codecs
 from socket import socket
+from config import config
 
-TAMANHO_PACOTE = 4096
-MIN_NUMBER = 0
-MAX_NUMBER = 10
-SIZE = 10
-SEPARATOR = "<>"
+IP = config["ip"]
+PORT = config["port"]
+TAMANHO_PACOTE = config["tamanhoPacote"]
+MIN_NUMBER = config["numeroMinimo"]
+MAX_NUMBER = config["numeroMaximo"]
+SIZE = config["tamanhoArray"]
+SEPARATOR = config["separador"]
 
 def requisicao():
     sck = socket()
     sck2 = socket()
 
-    server_info = ('127.0.0.1', 3000)
-    server_info2 = ('127.0.0.1', 3001)
+    server_info = (IP, PORT)
+    server_info2 = (IP, PORT + 1)
     sck.connect(server_info)
     print("Conexao com o servidor 1 foi aceita!")
     sck2.connect(server_info2)
